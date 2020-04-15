@@ -6,10 +6,11 @@ import youtube_dl
 
 
 def main():
-    print("+--------------------------+")
-    print("+ [1] 下载 list.txt 里的东西 +")
-    print("+ [2] 直接给地址下载         +")
-    a = input("+ 请选择：                  +")
+    print("#========= 请选择 ==========#")
+    print("# [1] 下载 list.txt 里的东西 #")
+    print("# [2] 直接给地址下载         #")
+    print("#==========================#")
+    a = input("->[?] 输入数字：")
     if a == "1":
         download(get_urls("list.txt"))
     if a == "2":
