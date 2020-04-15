@@ -21,7 +21,7 @@ def main():
     if a == "2":
         while True:
             b = []
-            b.append(input("输入视频所在网页地址："))
+            b.append(input("\n->[!] 输入视频所在网页地址并回车开始下载：\n"))
             download(b)
 
 
