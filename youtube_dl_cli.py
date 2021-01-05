@@ -6,32 +6,63 @@ import youtube_dl
 
 
 def main():
-    print("#===========================#")
-    print("#========= 请选择 ==========#")
-    print("#===========================#")
-    print("#                           #")
-    print("# [1] 下载 list.txt 里的东西#")
-    print("#                           #")
-    print("# [2] 直接给地址下载        #")
-    print("#                           #")
-    print("#===========================#")
-    a = input("\n->[?] 输入序号：")
-    if a == "1":
-        download(get_urls("list.txt"))
-    if a == "2":
+    print("#=====================================#")
+    print("#          默认下载720P视频(y/n)      #")
+    print("#=====================================#")
+    a = input("输入空格键继续(输入n则进行其它选择):")
+    if a == "n":
+        print("#====================================#")
+        print("#============= 请选择 ===============#")
+        print("#====================================#")
+        print("#                                    #")
+        print("# [11] 下载 list.txt 里的东西(720P)  #")
+        print("#                                    #")
+        print("# [12] 下载 list.txt 里的东西(1080p) #")
+        print("#                                    #")
+        print("# [21] 输入地址下载720P视频          #")
+        print("#                                    #")
+        print("# [22] 输入地址下载1080P视频         #")
+        print("#====================================#")
+        d = input("\n->[?] 输入序号：")
+        if d == "11":
+            download1(get_urls("list.txt"))
+        if d == "12":
+            download2(get_urls("list.txt"))
+        if d == "21":
+            while True:
+                b = []
+                b.append(input("\n->[!] 输入视频所在网页地址并回车开始下载：\n"))
+                download1(b)
+        if d == "22":
+            while True:
+                c = []
+                c.append(input("\n->[!] 输入视频所在网页地址并回车开始下载：\n"))
+                download2(c)
+    else:
         while True:
             b = []
             b.append(input("\n->[!] 输入视频所在网页地址并回车开始下载：\n"))
-            download(b)
+            download1(b)
 
 
-def download(dl_list: list):
-    ydl_opts = {
-        'format': 'bestvideo[height <=? 1080][ext=mp4]+bestaudio[ext=m4a]/best[height <=? 1080]/best',
-    }
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        ydl.download(dl_list)
-        # ydl.download(['https://www.youtube.com/watch?v=BaW_jenozKc'])
+def download1(dl_list: list):
+        ydl_opts = {
+                        'format': 'bestvideo[height <=? 720][ext=mp4]+bestaudio[ext=m4a]/best[height <=? 720]/best', 
+                    }
+        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+            ydl.download(dl_list)
+            # ydl.download(['https://www.youtube.com/watch?v=BaW_jenozKc'])
+    
+    
+
+
+def download2(dl_list: list):
+        ydl_opts = {
+                        'format': 'bestvideo[height <=? 1080][ext=mp4]+bestaudio[ext=m4a]/best[height <=? 1080]/best',
+                    }
+        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+            ydl.download(dl_list)
+            # ydl.download(['https://www.youtube.com/watch?v=BaW_jenozKc'])
 
 
 def get_urls(filepath: str) -> list:
